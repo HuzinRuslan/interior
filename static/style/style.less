@@ -1,4 +1,5 @@
 @width-all: 1366px;
+
 * {
     margin: 0;
     padding: 0;
@@ -48,7 +49,8 @@ body {
     color: #212121;
     border-bottom: 3px solid #212121;
 }
-.menu-active{
+
+.menu-active {
     text-shadow: 0 0 .65px #333, 0 0 .65px #333;
     color: #212121;
     border-bottom: 3px solid #212121;
@@ -62,7 +64,12 @@ body {
     min-width: @width-all;
     position: relative;
     min-height: 800px;
-    background-image: url(../img/slider-img.jpg)
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 li {
@@ -73,10 +80,15 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.slider-text {
-    margin-top: 260px;
-    margin-left: 98px;
+.hidden {
+    display: none;
 }
+
+.slider-text {
+    padding-top: 260px;
+    padding-left: 98px;
+}
+
 
 .slider-name {
     margin-bottom: 34px;
@@ -137,14 +149,8 @@ body {
     box-shadow: none;
 }
 
-.icons {
-    width: @width-all;
-    position: absolute;
-    text-align: center;
-    bottom: 19px;
-}
-
-.icons a {
+.icon {
+    cursor: pointer;
     bottom: 19px;
     width: 30px;
     height: 30px;
@@ -152,12 +158,24 @@ body {
     border-radius: 50%;
     background-color: #C7CCD5;
 }
+.icons {
+    width: @width-all;
+    position: absolute;
+    text-align: center;
+    bottom: 19px;
+}
 
-.icons a:hover {
+.icons img:hover {
     transform: scale(1.12);
-    display: inline-block;
     border-radius: 50%;
     background-color: #212121;
+    margin-top: -5px;
+}
+
+.icon-active {
+    transform: scale(1.12);
+    border-radius: 50%;
+    background-color: #212121 !important;
     margin-top: -5px;
 }
 
@@ -224,7 +242,7 @@ a {
     padding-left: 68px;
 }
 
-.products-ul li > div {
+.products-ul li>div {
     position: relative;
 }
 
@@ -286,7 +304,7 @@ a {
     display: flex;
 }
 
-.catalog-ul{
+.catalog-ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
@@ -780,10 +798,11 @@ h3.contact {
 .product-selector ul li a:hover {
     color: #212121;
 }
-.product-selector-active{
-    color:   #212121 !important;
+
+.product-selector-active {
+    color: #212121 !important;
     border-bottom: 3px solid #212121;
-  }
+}
 
 .product-page {
     display: flex;
@@ -918,4 +937,25 @@ h3.contact {
 
 .footer-icons a {
     margin-right: 13px;
+}
+
+
+@-webkit-keyframes fade-out {
+    0% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
 }
