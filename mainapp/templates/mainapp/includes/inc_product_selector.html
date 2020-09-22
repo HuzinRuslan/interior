@@ -1,0 +1,5 @@
+<ul>
+    {% for item in list_names %}
+        <li><a href="{% url item.href %}"{% if request.resolver_match.url_name == item.href %} class="product-selector-active" {% endif %}>{{item.name}}</a></li>
+    {% endfor %}
+</ul>

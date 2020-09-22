@@ -22,5 +22,13 @@ urlpatterns = [
     path('contact/', mainapp.contact, name='contact'),
     path('catalog/', mainapp.catalog, name='catalog'),
     path('fishnet-chair/', mainapp.chair, name='fishnet-chair'),
+
+    path('catalog/product_all/', mainapp.catalog, name='product_all'),
+    path('catalog/product_home/', mainapp.catalog, name='product_home'),
+    path('catalog/product_office/', mainapp.catalog, name='product_office'),
+    path('catalog/product_furniture/', mainapp.catalog, name='product_furniture'),
+    path('catalog/product_modern/', mainapp.catalog, name='product_modern'),
+    path('catalog/product_classic/', mainapp.catalog, name='product_classic'),
+
     path('admin/', admin.site.urls),
 ]

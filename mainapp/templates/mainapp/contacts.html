@@ -1,39 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'mainapp/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="/static/style/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/9d0fccc099.js" crossorigin="anonymous"></script>
-</head>
+{% load static %}
 
-<body>
-    <div class="container">
-        <div class="contacts-header">
-            <div class="header">
-                <div class="logo">
-                    <a href="/"><img src="/static/img/logo.svg" alt=""></a>
-                </div>
-                <div class="menu">
-                    <ul class="menu-list">
-                        <li> <a href="/">HOME</a> </li>
-                        <li> <a href="/catalog/">PRODUCTS</a> </li>
-                        <li> <a href="#">HISTORY</a> </li>
-                        <li> <a href="#">SHOWROOM</a> </li>
-                        <li> <a href="/contact/">CONTACT</a> </li>
-                    </ul>
-                </div>
-                <div class="search">
-                    <a href="#"><img src="/static/img/search.svg" alt=""></a>
-                </div>
-            </div>
-            <div class="contacts-text">
-                <p>Contact Us</p>
-            </div>
-        </div>
-        <div class="main">
+{% block header %}
+    <div class="contacts-text">
+        <p>Contact Us</p>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="main">
             <div class="main-contacts">
                 <div class="block-contacts">
                     <div class="contact-block"> <i class="fas fa-map-marker-alt"></i>
@@ -59,7 +35,7 @@
                             <p class="contact-content"> info@interior.com </p>
                             <br>
                             <p class="contact-header"> Address: </p> 12 W 1st St, 90001 Los Angeles, California </div>
-                    </div>[
+                    </div>
                     <div class="contact-block"> <i class="fas fa-map-marker-alt"></i>
                         <div class="contact-text">
                             <h3 class="contact">California</h3>
@@ -74,45 +50,5 @@
                     </div>
                 </div>
             </div>
-            <div class="footer">
-                <div class="footer-top">
-                    <div class="contact">
-                        <h3 class="footer-header">Contact Us</h3>
-                        <div class="footer-text">
-                            <p class="contacts">132A Bridge Road Richmond VIC Australia.
-                                <br>
-                                <br> Talk to us on 1300 132 info@interior.com</p>
-                        </div>
-                    </div>
-                    <div class="info">
-                        <h3 class="footer-header">Useful Information</h3>
-                        <div class="footer-text">
-                            <div class="info-footer-text">
-                                <p class="info-footer1"> <a href="#">Sales terms</a> <a href="#">Customer care</a> <a href="#">Delivery</a> </p>
-                                <p class="info-footer2"> <a href="#">Architect accounts</a> <a href="#">Careers Exchanges & returns</a> </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="keep-in-touch">
-                        <h3 class="footer-header">Let’s Stay in Touch!</h3>
-                        <div class="footer-text">
-                            <p class="touch-footer">Suscribe to know about our latest news, products and special offers just for suscribers.</p>
-                            <input class="input-footer" type="text" placeholder="your email adress"> </div>
-                    </div>
-                </div>
-                <div class="footer-low">
-                    <p class="copy">© Copyright - INTERIOR 2016. All Rights Reserved.</p>
-                    <div class="footer-icons">
-                        <div class="icon-circle"><a href="#"><i class="fab fa-facebook-f"></i></a></div>
-                        <div class="icon-circle"><a href="#"><i class="fab fa-twitter"></i></a></div>
-                        <div class="icon-circle"><a href="#"><i class="fab fa-google-plus-g"></i></a></div>
-                        <div class="icon-circle"><a href="#"><i class="fab fa-vk"></i></a></div>
-                    </div>
-                    <p class="cookies">Terms & Conditions / Privacy policy & Cookies</p>
-                </div>
-            </div>
         </div>
-    </div>
-</body>
-
-</html>
+{% endblock %}

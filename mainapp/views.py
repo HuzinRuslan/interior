@@ -1,27 +1,40 @@
 from django.shortcuts import render
 
+menu_list = [
+    {'href': 'product_all', 'name': 'ALL'},
+    {'href': 'product_home', 'name': 'HOME'},
+    {'href': 'product_office', 'name': 'OFFICE'},
+    {'href': 'product_furniture', 'name': 'FURNITURE'},
+    {'href': 'product_modern', 'name': 'MODERN'},
+    {'href': 'product_classic', 'name': 'CLASSIC'},
+]
+
 
 def main(request):
-    text = 'da'
     content = {
-        'title': 'главная',
-        "test": text,
-        'items_list': [1, 2, 3, 4, 5],
-        'user': {
-            'first_name': 'max',
-            'date_birth': '12/04/2000',
-        }
+        'title': 'главная'
     }
     return render(request, 'mainapp/index.html', content)
 
 
 def contact(request):
-    return render(request, 'mainapp/contacts.html')
+    content = {
+        'title': 'контакты'
+    }
+    return render(request, 'mainapp/contacts.html', content)
 
 
 def catalog(request):
-    return render(request, 'mainapp/catalog.html')
+    content = {
+        'title': 'каталог',
+        'list_names': menu_list,
+    }
+    return render(request, 'mainapp/catalog.html', content)
 
 
 def chair(request):
-    return render(request, 'mainapp/fishnet-chair.html')
+    content = {
+        'title': 'каталог',
+        'list_names': menu_list,
+    }
+    return render(request, 'mainapp/fishnet-chair.html', content)

@@ -17,6 +17,8 @@ body {
 }
 
 .header {
+    padding-bottom: 30px;
+    background-color: #f0f0f0;
     display: flex;
 }
 
@@ -42,6 +44,11 @@ body {
 }
 
 .menu-list li a:hover {
+    text-shadow: 0 0 .65px #333, 0 0 .65px #333;
+    color: #212121;
+    border-bottom: 3px solid #212121;
+}
+.menu-active{
     text-shadow: 0 0 .65px #333, 0 0 .65px #333;
     color: #212121;
     border-bottom: 3px solid #212121;
@@ -616,6 +623,7 @@ a {
 }
 
 .contacts-text {
+    background-color: #f0f0f0;
     font-size: 62px;
     font-weight: 100;
     font-stretch: normal;
@@ -624,8 +632,7 @@ a {
     letter-spacing: normal;
     text-align: left;
     color: #212121;
-    margin-top: 171px;
-    margin-left: 101px;
+    padding: 171px 0 56px 101px;
 }
 
 .main-contacts {
@@ -744,9 +751,9 @@ h3.contact {
 }
 
 .product-selector {
-    margin-top: 10px;
+    margin-bottom: 70px;
     height: 71px;
-    background: #f4f4f4;
+    background: #f0f0f0;
 }
 
 .product-selector ul {
@@ -773,6 +780,10 @@ h3.contact {
 .product-selector ul li a:hover {
     color: #212121;
 }
+.product-selector-active{
+    color:   #212121 !important;
+    border-bottom: 3px solid #212121;
+  }
 
 .product-page {
     display: flex;
@@ -841,7 +852,7 @@ h3.contact {
 }
 
 .product-text {
-    margin-left: 56px;
+    margin: 47px 0 0 56px;
     width: 510px;
 }
 
