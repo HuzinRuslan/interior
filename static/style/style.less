@@ -244,6 +244,13 @@ a {
 
 .products-ul li>div {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.products1 .products-ul li div>img {
+    width: 270px;
 }
 
 .products-ul div:hover {
@@ -389,6 +396,9 @@ a {
 
 .trending-catalog {
     margin-top: 64px;
+}
+.product-img{
+    width: 370px;
 }
 
 .slider2 {
@@ -715,11 +725,11 @@ h3.contact {
 }
 
 .catalog-header {
+    display: inline-block;
     margin-left: 105px;
 }
 
 .catalog-header ul {
-    width: 660px;
     padding-bottom: 3px;
     border-bottom: 1px solid #6c6c6c;
     display: flex;
@@ -776,7 +786,7 @@ h3.contact {
 
 .product-selector ul {
     display: flex;
-    padding-left: 360px;
+    justify-content: center;
     padding-top: 28px;
 }
 

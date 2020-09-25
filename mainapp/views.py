@@ -1,40 +1,42 @@
 from django.shortcuts import render
 
-menu_list = [
-    {'href': 'product_all', 'name': 'ALL'},
-    {'href': 'product_home', 'name': 'HOME'},
-    {'href': 'product_office', 'name': 'OFFICE'},
-    {'href': 'product_furniture', 'name': 'FURNITURE'},
-    {'href': 'product_modern', 'name': 'MODERN'},
-    {'href': 'product_classic', 'name': 'CLASSIC'},
-]
+from mainapp.models import Product, ProductCategory
 
 
 def main(request):
+    products_list = Product.objects.all().order_by('?')[:4]
+    trending_list = Product.objects.all().order_by('?')[:9]
     content = {
-        'title': 'главная'
+        'title': 'главная',
+        'products': products_list,
+        'trendingCatalog': trending_list
     }
     return render(request, 'mainapp/index.html', content)
 
 
 def contact(request):
     content = {
-        'title': 'контакты'
+        'title': 'контакты',
     }
     return render(request, 'mainapp/contacts.html', content)
 
 
-def catalog(request):
+def catalog(request, catalog_pk=None):
+    links_menu = ProductCategory.objects.all()
+    products = Product.objects.all()
+    generalProducts = Product.objects.all()[:12]
     content = {
         'title': 'каталог',
-        'list_names': menu_list,
+        'list_names': links_menu,
+        'catalog_products': products
     }
     return render(request, 'mainapp/catalog.html', content)
 
 
 def chair(request):
+    links_menu = ProductCategory.objects.all()
     content = {
         'title': 'каталог',
-        'list_names': menu_list,
+        'list_names': links_menu,
     }
     return render(request, 'mainapp/fishnet-chair.html', content)

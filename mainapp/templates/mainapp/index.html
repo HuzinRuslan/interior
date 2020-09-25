@@ -1,6 +1,6 @@
 {% extends 'mainapp/base.html' %} 
 
-{% load static %} 
+{% load static %}
 
 {% block header %}
 <div class="slider">
@@ -48,50 +48,22 @@
             <li><a href="#">Featured</a></li>
             <li><a href="#">New</a></li>
         </ul>
-    </div> <a class="explore" href="#">explore all <img src="{% static 'img/arrow.svg' %}" alt=""></a>
+    </div> <a class="explore" href="{% url 'catalog:index' %}">explore all <img src="{% static 'img/arrow.svg' %}" alt=""></a>
 </div>
 <div class="products1">
     <ul class="products-ul">
-        <li>
-            <div><img class="product-img" src="{% static 'img/product-1.jpg' %}" alt="">
-                <div class="prod-hover">
-                    <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                            alt=""></a>
-                    <p class="name">Fishnet Chair</p>
-                    <p class="desc">Seat and back with upholstery made of cold cure foam.</p>
+        {% for product in products %}
+            <li>
+                <div><img class="product-img" src="media/{{ product.image }}" alt="">
+                    <div class="prod-hover">
+                        <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
+                                alt=""></a>
+                        <p class="name">{{ product.name }}</p>
+                        <p class="desc">{{ product.short_desc }}</p>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li>
-            <div><img class="product-img" src="{% static 'img/product-2.jpg' %}" alt="">
-                <div class="prod-hover">
-                    <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                            alt=""></a>
-                    <p class="name">Lorem ipsum dolor.</p>
-                    <p class="desc">Lorem ipsum dolor sit amet, consectetur.</p>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div><img class="product-img" src="{% static 'img/product-3.jpg' %}" alt="">
-                <div class="prod-hover">
-                    <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                            alt=""></a>
-                    <p class="name">Lorem ipsum. </p>
-                    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam?</p>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div><img class="product-img" src="{% static 'img/product-4.jpg' %}" alt="">
-                <div class="prod-hover">
-                    <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                            alt=""></a>
-                    <p class="name">Lorem ipsum dolor sit.</p>
-                    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                </div>
-            </div>
-        </li>
+            </li>
+        {% endfor %}
     </ul>
 </div>
 <div class="prod-promo">
@@ -120,71 +92,24 @@
 </div>
 <div class="trending">
     <div class="trending-header">
-        <p>Trending Products</p> <a class="explore" href="{% url 'fishnet-chair' %}">explore all <img
+        <p>Trending Products</p> <a class="explore" href="{% url 'catalog:index' %}">explore all <img
                 src="{% static 'img/arrow.svg' %}" alt=""></a>
     </div>
     <div class="trending-catalog">
         <ul class="products-ul catalog-ul">
+            {% for item in trendingCatalog %}
             <li>
-                <div><img class="product-img" src="{% static 'img/product-11.jpg' %}" alt="">
+                <div>
+                    <img class="product-img" src="media/{{ item.image }}" alt="">
                     <div class="prod-hover">
                         <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
                                 alt=""></a>
-                        <p class="name">Fishnet Chair</p>
-                        <p class="desc">Seat and back with upholstery made of cold cure foam.</p>
+                        <p class="name">{{ item.name }}</p>
+                        <p class="desc">{{ item.short_desc }}</p>
                     </div>
                 </div>
             </li>
-            <li>
-                <div><img class="product-img" src="{% static 'img/product-21.jpg' %}" alt="">
-                    <div class="prod-hover">
-                        <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                                alt=""></a>
-                        <p class="name">Fishnet Chair</p>
-                        <p class="desc">Seat and back with upholstery made of cold cure foam.</p>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div><img class="product-img" src="{% static 'img/product-31.jpg' %}" alt="">
-                    <div class="prod-hover">
-                        <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                                alt=""></a>
-                        <p class="name">Fishnet Chair</p>
-                        <p class="desc">Seat and back with upholstery made of cold cure foam.</p>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div><img class="product-img" src="{% static 'img/product-41.jpg' %}" alt="">
-                    <div class="prod-hover">
-                        <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                                alt=""></a>
-                        <p class="name">Fishnet Chair</p>
-                        <p class="desc">Seat and back with upholstery made of cold cure foam.</p>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div><img class="product-img" src="{% static 'img/product-5.jpg' %}" alt="">
-                    <div class="prod-hover">
-                        <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                                alt=""></a>
-                        <p class="name">Fishnet Chair</p>
-                        <p class="desc">Seat and back with upholstery made of cold cure foam.</p>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div><img class="product-img" src="{% static 'img/product-6.jpg' %}" alt="">
-                    <div class="prod-hover">
-                        <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                                alt=""></a>
-                        <p class="name">Fishnet Chair</p>
-                        <p class="desc">Seat and back with upholstery made of cold cure foam.</p>
-                    </div>
-                </div>
-            </li>
+            {% endfor %}
         </ul>
     </div>
 </div>
