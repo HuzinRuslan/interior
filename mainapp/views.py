@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from mainapp.models import Product, ProductCategory
+from mainapp.models import Product, ProductCategory, Contact
 
 
 def main(request):
@@ -15,8 +15,10 @@ def main(request):
 
 
 def contact(request):
+    contacts = Contact.objects.all()[:3]
     content = {
         'title': 'контакты',
+        'contacts': contacts
     }
     return render(request, 'mainapp/contacts.html', content)
 

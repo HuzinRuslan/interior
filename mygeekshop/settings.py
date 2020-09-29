@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
+    'authapp',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mygeekshop.wsgi.application'
+
+AUTH_USER_MODEL = 'authapp.Shopuser'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

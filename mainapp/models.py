@@ -1,5 +1,4 @@
 from django.db import models
-from random import randint
 
 
 class ProductCategory(models.Model):
@@ -27,4 +26,11 @@ class Product(models.Model):
         return f'{self.name} {self.category.name}'
 
 
-randProduct = randint(0, len(Product.objects.all()))
+class Contact(models.Model):
+    phone = models.CharField(max_length=15, verbose_name='номер телефона')
+    email = models.CharField(max_length=50, verbose_name='почта')
+    city = models.CharField(max_length=20, verbose_name='город')
+    address = models.TextField(blank=True)
+
+    def __str__(self):
+        return f'Контакт {self.city} {self.email}'
