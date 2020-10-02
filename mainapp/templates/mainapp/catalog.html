@@ -17,19 +17,17 @@
                 <div class="catalog">
                     <ul class="products-ul catalog-ul">
                         {% for item in catalog_products %}
-                            {% if request.resolver_match.kwargs.catalog_pk == item.category.name or request.resolver_match.url_name == 'index' %}
-                                <li>
-                                    <div>
-                                        <img class="product-img" src="/media/{{ item.image }}" alt="">
-                                        <div class="prod-hover">
-                                            <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                                                    alt=""></a>
-                                            <p class="name">{{item.name}}</p>
-                                            <p class="desc">{{item.short_desc}}</p>
-                                        </div>
+                            <li>
+                                <div>
+                                    <img class="product-img" src="/media/{{ item.image }}" alt="">
+                                    <div class="prod-hover">
+                                        <a href="{% url 'basket:add' item.pk %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
+                                                alt=""></a>
+                                        <p class="name">{{item.name}}</p>
+                                        <p class="desc">{{item.short_desc}}</p>
                                     </div>
-                                </li>
-                            {% endif %}
+                                </div>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>

@@ -23,7 +23,12 @@
             {% else %}
                 <li> <a href="{% url 'auth:login' %}">Login</a> </li>
             {% endif %}
+            <li> <a href="{% url 'basket:index' %}" class="basket" {% if request.resolver_match.url_name == 'basket' %} class="menu-active" {% endif %}>
+                    {% if basket %} {{ basket|length }} {% endif %}
+                </a>
+            </li>
             <li class="search"> <a href="#"><img src="{% static 'img/search.svg' %}" alt=""></a> </li>
+
         </ul>
     </div>
 </div>

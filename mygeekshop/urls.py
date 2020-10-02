@@ -10,6 +10,7 @@ urlpatterns = [
     path('fishnet-chair/', mainapp.chair, name='fishnet-chair'),
     path('catalog/', include('mainapp.urls', namespace='catalog')),
     path('auth/', include('authapp.urls', namespace='auth')),
+    path('basket/', include('basketapp.urls', namespace='basket')),
 
     path('admin/', admin.site.urls),
 ]

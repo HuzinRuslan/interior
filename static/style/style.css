@@ -63,6 +63,16 @@ li {
 body {
   font-family: 'Montserrat', sans-serif;
 }
+.basket {
+  background-position: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 23px;
+  height: 23px;
+  background-image: url(/static/img/basket.png);
+  background-repeat: no-repeat;
+}
 .hidden {
   display: none;
 }

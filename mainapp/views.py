@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
+from authapp.models import ShopUser
+from basketapp.models import Basket
 from mainapp.models import Product, ProductCategory, Contact
 
 
@@ -23,14 +25,32 @@ def contact(request):
     return render(request, 'mainapp/contacts.html', content)
 
 
-def catalog(request, catalog_pk=None):
+def catalog(request, pk=None):
     links_menu = ProductCategory.objects.all()
     products = Product.objects.all()
-    generalProducts = Product.objects.all()[:12]
+    basket = Basket.objects.filter(user=request.user)
+    # basket = sum(list(Basket.objects.filter(user=request.user).values_list('quantity',flat=True)))
+    if pk is not None:
+        if pk == "0":
+            products = Product.objects.all()
+            category = {'name': 'все'}
+        else:
+            category = get_object_or_404(ProductCategory, pk=pk)
+            products = Product.objects.filter(category_id=pk).order_by('-price')
+
+        content = {
+            'title': 'каталог',
+            'list_names': links_menu,
+            'catalog_products': products,
+            'category': category,
+            'basket': basket,
+        }
+        return render(request, 'mainapp/catalog.html', content)
     content = {
         'title': 'каталог',
         'list_names': links_menu,
-        'catalog_products': products
+        'catalog_products': products,
+        'basket': basket,
     }
     return render(request, 'mainapp/catalog.html', content)
 
