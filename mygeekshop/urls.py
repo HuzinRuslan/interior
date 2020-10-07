@@ -7,7 +7,6 @@ import mainapp.views as mainapp
 urlpatterns = [
     path('', mainapp.main, name='main'),
     path('contact/', mainapp.contact, name='contact'),
-    path('fishnet-chair/', mainapp.chair, name='fishnet-chair'),
     path('catalog/', include('mainapp.urls', namespace='catalog')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('basket/', include('basketapp.urls', namespace='basket')),

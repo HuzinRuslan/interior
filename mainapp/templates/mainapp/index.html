@@ -9,7 +9,7 @@
             <p class="slider-header">TRENDING</p>
             <h2 class="slider-name">Fishnet TABLE</h2>
             <p class="slider-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi at
-                blanditiis consequuntur et nulla qui quia, quidem sunt velit.</p> <a href="/fishnet-chair/"
+                blanditiis consequuntur et nulla qui quia, quidem sunt velit.</p> <a href="{% url 'catalog:index' %}"
                 class="button">Order Us
                 <img class="arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
         </div>
@@ -19,7 +19,7 @@
             <p class="slider-header">TRENDING</p>
             <h2 class="slider-name">Fishnet Chair</h2>
             <p class="slider-content">Seat and back with upholstery made of cold cure foam. Steel frame, available in
-                matt powder-coated black</p> <a href="/fishnet-chair/" class="button">Order Us <img class="arrow"
+                matt powder-coated black</p> <a href="{% url 'catalog:index' %}" class="button">Order Us <img class="arrow"
                     src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
         </div>
     </div>
@@ -28,7 +28,7 @@
             <p class="slider-header">TRENDING</p>
             <h2 class="slider-name">Fishnet TABLE</h2>
             <p class="slider-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi at
-                blanditiis consequuntur et nulla qui quia, quidem sunt velit.</p> <a href="/fishnet-chair/"
+                blanditiis consequuntur et nulla qui quia, quidem sunt velit.</p> <a href="{% url 'catalog:index'  %}"
                 class="button">Order Us
                 <img class="arrow" src="{% static 'img/arrow.svg' %}" alt="arrow"></a>
         </div>
@@ -42,30 +42,8 @@
 {% endblock %} 
  
 {% block content %}
-<div class="in-main-header">
-    <div class="in-main-menu">
-        <ul>
-            <li><a href="#">Featured</a></li>
-            <li><a href="#">New</a></li>
-        </ul>
-    </div> <a class="explore" href="{% url 'catalog:index' %}">explore all <img src="{% static 'img/arrow.svg' %}" alt=""></a>
-</div>
-<div class="products1">
-    <ul class="products-ul">
-        {% for product in products %}
-            <li>
-                <div><img class="product-img" src="media/{{ product.image }}" alt="">
-                    <div class="prod-hover">
-                        <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                                alt=""></a>
-                        <p class="name">{{ product.name }}</p>
-                        <p class="desc">{{ product.short_desc }}</p>
-                    </div>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
-</div>
+
+{% include 'mainapp/includes/inc_main_new_products.html' %}
 <div class="prod-promo">
     <div class="sub-promo">
         <div class="sub-one"><img src="{% static 'img/promo-img-1.jpg' %}" alt="">
@@ -73,7 +51,7 @@
                 <p class="promo-header">exclusive</p>
                 <h3 class="promo-name">Fishnet Chair</h3>
                 <p class="promo-content">Seat and back with upholstery made of cold cure foam. Steel frame, available in
-                    matt </p> <a href="{% url 'fishnet-chair' %}" class="button">ORDER US <img class="arrow"
+                    matt </p> <a href="{% url 'catalog:index' %}" class="button">ORDER US <img class="arrow"
                         src="{% static 'img/arrow.svg' %}" alt=""></a>
             </div>
         </div>
@@ -84,7 +62,7 @@
                 <p class="promo-header">exclusive</p>
                 <h3 class="promo-name">Fishnet Chair</h3>
                 <p class="promo-content">Seat and back with upholstery made of cold cure foam. Steel frame, available in
-                    matt </p> <a href="/fishnet-chair/" class="button">ORDER US <img class="arrow"
+                    matt </p> <a href="{% url 'catalog:index' %}" class="button">ORDER US <img class="arrow"
                         src="{% static 'img/arrow.svg' %}" alt=""></a>
             </div>
         </div>
@@ -102,7 +80,7 @@
                 <div>
                     <img class="product-img" src="media/{{ item.image }}" alt="">
                     <div class="prod-hover">
-                        <a href="{% url 'fishnet-chair' %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
+                        <a href="{% url 'catalog:product' item.pk %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
                                 alt=""></a>
                         <p class="name">{{ item.name }}</p>
                         <p class="desc">{{ item.short_desc }}</p>
@@ -133,7 +111,7 @@
             <p class="promo-header">exclusive</p>
             <h3 class="promo-name">Fishnet Chair</h3>
             <p class="promo-content">Seat and back with upholstery made of cold cure foam. Steel frame, available in
-                matt </p> <a href="/fishnet-chair/" class="button">ORDER US <img class="arrow"
+                matt </p> <a href="{% url 'catalog:index' %}" class="button">ORDER US <img class="arrow"
                     src="{% static 'img/arrow.svg' %}" alt=""></a>
         </div>
     </div>
@@ -155,4 +133,8 @@
         </div>
     </div>
 </div> 
+{% endblock %}
+
+{% block script %}
+    <script src= "{% static 'js/main_slider.js' %}">  </script>
 {% endblock %}

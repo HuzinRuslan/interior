@@ -1,8 +1,8 @@
 <ul>
-    <li><a href="{% url 'catalog:category' 0 %}" {% if request.resolver_match.kwargs.pk == 0|stringformat:"i"  %}
+    <li><a href="{% url 'catalog:index' %}" {% if request.resolver_match.url_name == 'index'%}
            class="product-selector-active" {% endif %}>все</a></li>
     {% for item in list_names %}
-    <li><a href="{% url 'catalog:category' item.pk %}" {% if request.resolver_match.kwargs.pk == item.pk|stringformat:"i"  %}
+    <li><a href="{% url 'catalog:category' item.pk %}" {% if request.resolver_match.kwargs.pk == item.pk and request.resolver_match.url_name == 'category' %}
            class="product-selector-active" {% endif %}>{{item.name}}</a></li>
     {% endfor %}
 </ul>

@@ -21,7 +21,7 @@
                                 <div>
                                     <img class="product-img" src="/media/{{ item.image }}" alt="">
                                     <div class="prod-hover">
-                                        <a href="{% url 'basket:add' item.pk %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
+                                        <a href="{% url 'catalog:product' item.pk %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
                                                 alt=""></a>
                                         <p class="name">{{item.name}}</p>
                                         <p class="desc">{{item.short_desc}}</p>
@@ -40,7 +40,7 @@
                             <p class="promo-header">exclusive</p>
                             <h3 class="promo-name">Fishnet Chair</h3>
                             <p class="promo-content">Seat and back with upholstery made of cold cure foam. Steel frame,
-                                available in matt </p> <a href="{% url 'fishnet-chair' %}" class="button">ORDER US <img
+                                available in matt </p> <a href="{% url 'catalog:product' 0 %}" class="button">ORDER US <img
                                     class="arrow" src="{% static 'img/arrow.svg' %}" alt=""></a>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             <p class="promo-header">exclusive</p>
                             <h3 class="promo-name">Fishnet Chair</h3>
                             <p class="promo-content">Seat and back with upholstery made of cold cure foam. Steel frame,
-                                available in matt </p> <a href="{% url 'fishnet-chair' %}" class="button">ORDER US <img
+                                available in matt </p> <a href="{% url 'catalog:product' 0 %}" class="button">ORDER US <img
                                     class="arrow" src="{% static 'img/arrow.svg' %}" alt=""></a>
                         </div>
                     </div>

@@ -34,3 +34,12 @@ class Contact(models.Model):
 
     def __str__(self):
         return f'Контакт {self.city} {self.email}'
+
+
+# class Gallery(models.Model):
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='gallery')
+#     is_main = models.BooleanField(default=False)
+#     image = models.ImageField(upload_to='product_images', blank=True)
+#
+#     def get_all_gallery(self):
+#         pass

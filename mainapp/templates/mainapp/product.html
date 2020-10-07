@@ -1,0 +1,99 @@
+{% extends 'mainapp/base.html' %}
+
+{% load static %}
+
+{% block menu %}
+    <div class="header" style="background-color: white">
+        <div class="logo">
+            <a href="{% url 'main' %}"><img src="{% static 'img/logo.svg' %}" alt=""></a>
+        </div>
+        <div class="menu">
+            <ul class="menu-list">
+                <li> <a href="{% url 'main' %}">HOME</a> </li>
+                <li> <a href="{% url 'catalog:index' %}">PRODUCTS</a> </li>
+                <li style="display:none;"> <a href="#">HISTORY</a> </li>
+                <li style="display:none;"> <a href="#">SHOWROOM</a> </li>
+                <li> <a href="{% url 'contact' %}">CONTACT</a> </li>
+                {% if user.is_authenticated %}
+                <li> <a href="{% url 'auth:edit' %}">
+                    {% if user.first_name %}
+                        {{ user.first_name }}
+                    {% else %}
+                        Пользователь
+                    {% endif %}
+                </a> </li>
+                <li> <a href="{% url 'auth:logout' %}">Logout</a> </li>
+            {% else %}
+                <li> <a href="{% url 'auth:login' %}">Login</a> </li>
+            {% endif %}
+                <li> <a href="{% url 'basket:basket-index' %}" id="basket" {% if request.resolver_match.url_name == 'basket' %} class="menu-active" {% endif %}>
+                    {% if basket %}
+                        {{ basket.0.total_cost|floatformat:0 }} руб
+                        ({{ basket.0.total_quantity }} шт)
+                    {% endif %}
+                </a>
+            </li>
+                <li class="search"> <a href="#"><img src="{% static 'img/search.svg' %}" alt=""></a> </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block header %}
+    <div class="product-selector">
+        {% include 'mainapp/includes/inc_product_selector.html' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+            <div class="product-page">
+                <div class="product-images">
+                    <div class="product-big-image">
+                        <a href="#"><img src="/media/{{ product.image }}" alt=""></a>
+                    </div>
+                    <div class="product-small-images">
+                        <a href="#"><img src="/media/{{ product.image }}" alt=""></a>
+                        <a href="#"><img src="/media/{{ product.image }}" alt=""></a>
+                        <a href="#"><img src="/media/{{ product.image }}" alt=""></a>
+                    </div>
+                </div>
+                <div class="product-text">
+                    <p class="product-name">{{ product.name }}</p>
+                    <p class="product-header">Hot Deal</p>
+                    <div class="product-price">
+                        <p>Р</p>
+                        <p>{{ product.price }}</p>
+                        <p>/sq</p>
+                    </div> <a href="{% url 'basket:add' product.pk %}" class="buy-button">order us <img src="{% static 'img/arrow-w.svg' %}" alt=""></a>
+                    <p class="description">{{ product.short_desc }}
+                        <br>
+                        <br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                        <br>
+                        <br> et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <br>
+                        <br> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                </div>
+            </div>
+            <div class="trending">
+                <div class="trending-header">
+                    <p>Trending Products</p> <a class="explore" href="{% url 'catalog:index' %}">explore all <img src="{% static 'img/arrow.svg' %}" alt=""></a> </div>
+                <div class="trending-catalog">
+                    <ul class="products-ul catalog-ul">
+                        {% for product in same_products %}
+                        <li>
+                            <div><img class="product-img" src="/media/{{ product.image }}" alt="">
+                                <div class="prod-hover">
+                                    <a href="{% url 'catalog:product' product.pk %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
+                                            alt=""></a>
+                                    <p class="name">{{ product.name }}</p>
+                                    <p class="desc">{{ product.description }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+{% endblock %}

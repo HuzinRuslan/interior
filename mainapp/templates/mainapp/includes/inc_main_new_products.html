@@ -1,0 +1,26 @@
+{% load static %}
+
+<div class="in-main-header">
+    <div class="in-main-menu">
+        <ul>
+            <li><a href="#">Featured</a></li>
+            <li><a href="#">New</a></li>
+        </ul>
+    </div> <a class="explore" href="{% url 'catalog:index' %}">explore all <img src="{% static 'img/arrow.svg' %}" alt=""></a>
+</div>
+<div class="products1">
+    <ul class="products-ul">
+        {% for product in products %}
+            <li>
+                <div><img class="product-img" src="../media/{{ product.image }}" alt="">
+                    <div class="prod-hover">
+                        <a href="{% url 'catalog:product' product.pk %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
+                                alt=""></a>
+                        <p class="name">{{ product.name }}</p>
+                        <p class="desc">{{ product.short_desc }}</p>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
