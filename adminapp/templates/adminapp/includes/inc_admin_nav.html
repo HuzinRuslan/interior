@@ -1,0 +1,31 @@
+<div class="admin-nav">
+  <div class="admin-nav-search">
+    <div class="admin-nav-icons">
+      <div class="admin-nav-menu">
+        <i class="fas fa-bars"></i>
+      </div>
+    <i class="fas fa-search"></i>
+    </div>
+    <input type="text" class="admin-nav-input">
+  </div>
+  <button class="new-user">
+      {% if request.resolver_match.url_name == 'users' %}
+          <a href="{% url 'admin:user_create' %}">
+            <i class="fas fa-plus"></i>
+            новый пользователь
+          </a>
+        {% endif %}
+        {% if request.resolver_match.url_name == 'categories' %}
+            <a href="{% url 'admin:category_create' %}">
+                <i class="fas fa-plus"></i>
+                новая категория
+            </a>
+        {% endif %}
+        {% if request.resolver_match.url_name == 'products' %}
+            <a href="{% url 'admin:product_create' category.pk %}">
+                <i class="fas fa-plus"></i>
+                новый продукт
+            </a>
+        {% endif %}
+  </button>
+</div>

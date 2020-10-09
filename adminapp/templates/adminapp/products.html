@@ -1,0 +1,62 @@
+{% extends 'adminapp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="users-list">
+    {% include 'adminapp/includes/inc_admin_nav.html' %}
+    <div class="admin-products-list">
+
+        <div class="users">
+            <p>Продукты ({{ objects.count }})</p>
+        </div>
+        <div class="category-div">
+            <div class="product-record">
+                <p>Название</p>
+                <p>Действия</p>
+                <p>Цена</p>
+                <p>Описание</p>
+            </div>
+            <div class="product-record">
+                {% for object in objects %}
+                <div>
+                    <img
+                            src="/media/{{object.image|default:'products_images/default.jpg'}}"
+                            alt="{{ object.name }}" class="product-image">
+                    <div class="product_name {% if object.is_active == False %}not-active{% endif %}">
+                        {{ object.name|title }}
+                    </div>
+                </div>
+                <div class="admin-actions">
+                    <button>
+                        <a href="{% url 'admin:product' object.pk %}">
+                            подробнее
+                        </a>
+                    </button>
+                    <button>
+                        <a href="{% url 'admin:product_update' object.pk %}">
+                            редактировать
+                        </a>
+                    </button>
+                    <button>
+                        <a href="{% url 'admin:product_delete' object.pk %}">
+                            удалить
+                        </a>
+                    </button>
+                </div>
+                <div class="summary">
+                    <b>цена</b>
+                    <p>{{ object.price }} руб</p>
+                    <b>количество</b>
+                    <p>{{ object.quantity }}</p>
+                </div>
+                <div class="product_desc">
+                    {{ object.short_desc|title }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

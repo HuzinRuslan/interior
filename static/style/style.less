@@ -82,7 +82,7 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-#basket{
+.basket{
     background-position: left;
     display: flex;
     align-items: center;
@@ -1063,7 +1063,205 @@ h3.contact {
     margin-bottom: 15px;
     color: #555;
 }
+.admin_container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+}
 
+.user-image {
+    width: 100px;
+    border-radius: 50%;
+}
+.admin-menu {
+    background-color: #344052;
+    height: 100%;
+}
+.admin-menu > div:first-child {
+    padding-top: 20px;
+}
+.admin-menu > div{
+    border-bottom: 3px solid #2f3a4c;
+}
+.admin-menu > div p:first-child{
+    padding: 20px 0px 0px 20px;
+}
+.admin-menu > div a{
+    padding: 10px;
+}
+.admin-menu div p a{
+    margin-top: 22px;
+    display: block;
+    color: #acb7c9;
+}
+.admin-menu div p{
+    color: #535e72;
+}
+.admin-menu div:first-child{
+    text-align: center;
+}
+.users-list{
+    background-color: #f6f7fb;
+    display: flex;
+    flex-direction: column;
+}
+.users-list i{
+    padding: 0;
+    font-size: 30px;
+}
+.admin-nav{
+    background-color: #ffffff;
+    display: grid;
+    grid-template-columns:7fr 2fr;
+    justify-content: center;
+    align-items: center;
+}
+.admin-nav-search{
+    position: relative;
+}
+.admin-nav-icons{
+    display:flex;
+    z-index: 20;
+    margin-top: 10px;
+    position: absolute;
+}
+.admin-nav-icons i{
+    padding-left: 20px;
+}
+.admin-nav-input{
+    font-size: 35px;
+    padding-left: 120px;
+    border: none;
+    height: 50px;
+    width: 100%;
+}
+.admin-nav-input:focus{
+    outline: none;
+    background-color: #f6f7fb;
+}
+.new-user{
+    border: none;
+    margin-left: 10px;
+    background-color: #5884ff;
+    border-radius: 30px;
+    width: 180px;
+}
+.new-user a {
+    padding: 5px;
+    display: block;
+    color: #ffffff;
+}
+.new-user a i {
+    display: inline;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.users-div{
+    margin: 50px 0px 50px 0px;
+}
+
+.admin-users-list{
+    padding: 50px 30px;
+}
+.user-grid{
+    background-color: white;
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 1fr;
+    grid-auto-rows: minmax(150px, auto);
+}
+.users-grid:first-child{
+    background-color: #f6f7fb;
+    padding-left: 20px;
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 1fr;
+    grid-auto-rows: auto;
+}
+.user-grid > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+}
+.users-grid-username{
+    padding-left: 10px;
+    display: grid !important;
+    grid-template-columns: 2fr 2fr 2fr !important;
+}
+.user-role{
+    display: flex;
+    flex-direction: column;
+}
+.category-record{
+    background-color: white;
+    grid-auto-rows: minmax(150px, auto);
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+}
+.category-record:first-child{
+    padding-left: 20px;
+    background-color: #f6f7fb;
+    grid-auto-rows: auto;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+}
+.category-record > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gray;
+}
+.admin-categories-list{
+    padding: 50px 30px;
+}
+.admin-actions button{
+    border-radius: 10px;
+    transition-duration: 0.3s;
+}
+.admin-actions button a{
+    padding: 15px;
+    display: block;
+}
+.admin-actions button:hover{
+    transform: scale(1.1);
+}
+.admin-actions{
+    justify-content: space-around !important;
+}
+.not-active{
+    color: red;
+}
+
+.product-record{
+    background-color: white;
+    grid-auto-rows: minmax(150px, auto);
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr;
+}
+.product-record:first-child{
+    padding-left: 20px;
+    background-color: #f6f7fb;
+    grid-auto-rows: auto;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr;
+}
+.product-record > div{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid gray;
+}
+.admin-products-list{
+    padding: 50px 30px;
+}
+.product-image{
+    width: 100px;
+    border-radius: 50%;
+}
+.admin-active{
+    border-left: 4px solid blue;
+    background-color:#30394a;
+}
 @-webkit-keyframes fade-out {
     0% {
         opacity: 1

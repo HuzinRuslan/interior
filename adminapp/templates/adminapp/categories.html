@@ -1,0 +1,49 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="users-list">
+    {% include 'adminapp/includes/inc_admin_nav.html' %}
+    <div class="admin-categories-list">
+        <div class="users">
+            <p>Категории ({{ objects.count }})</p>
+        </div>
+        <div class="category-div">
+            <div class="category-record">
+                <p>Название</p>
+                <p>Действия</p>
+                <p>Описание</p>
+            </div>
+            <div class="category-record">
+                {% for object in objects %}
+                <div class="category_name {% if object.is_active == False %}not-active{% endif %}">
+                    {{ object.name|title }}
+                </div>
+                <div class="admin-actions">
+                    <button>
+                        <a href="{% url 'admin:products' object.pk %}">
+                            товары категории
+                        </a>
+                    </button>
+                    <button>
+                        <a href="{% url 'admin:category_update' object.pk %}">
+                            редактировать
+                        </a>
+                    </button>
+                    <button>
+                        <a href="{% url 'admin:category_delete' object.pk %}">
+                            удалить
+                        </a>
+                    </button>
+                </div>
+                <div class="category_desc">
+                    {{ object.description|title }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

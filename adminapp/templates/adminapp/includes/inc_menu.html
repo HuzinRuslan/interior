@@ -1,0 +1,46 @@
+<div class="admin-menu">
+
+  <div>
+    <img src="/media/{{ user.avatar }}" alt="" class="user-image">
+    <p class="user-menu-name"><a href="#">{{user}}</a></p>
+  </div>
+
+  <div>
+    <p>Main</p>
+    <p><a href="{% url 'main' %}">ДОМОЙ</a></p>
+    <p><a href="{% url 'main' %}">RESUMES</a></p>
+    <p><a href="{% url 'main' %}">TASKS</a></p>
+    <p><a href="{% url 'main' %}">CALENDAR</a></p>
+
+  </div>
+  <div>
+    <p>Admin</p>
+    <p>
+      <a href="{% url 'admin:users' %}"
+       class="{% if request.resolver_match.url_name == 'users' %}
+                admin-active
+              {% endif %}">
+      ПОЛЬЗОВАТЕЛИ
+      </a>
+    </p>
+    <p><a href="{% url 'main' %}">LOCATIONS</a></p>
+    <p><a href="{% url 'main' %}">JOB BOARDS</a></p>
+    <p><a href="{% url 'main' %}">SOCIAL</a></p>
+
+  </div>
+  <div>
+    <p>Categories</p>
+    <p>
+      <a href="{% url 'admin:categories' %}"
+       class="{% if request.resolver_match.url_name == 'categories' or category.name %}
+                admin-active
+              {% endif %}">
+        КАТЕГОРИИ
+        {% if category %}
+          :<span>{{ category.name }}</span>
+        {% endif %}
+      </a>
+    </p>
+
+  </div>
+</div>
