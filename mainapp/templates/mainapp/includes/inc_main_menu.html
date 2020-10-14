@@ -7,7 +7,7 @@
     <div class="menu">
         <ul class="menu-list">
             <li> <a href="{% url 'main' %}" {% if request.resolver_match.url_name == 'main' %} class="menu-active" {% endif %}>HOME</a> </li>
-            <li> <a href="{% url 'catalog:index' %}"{% if request.resolver_match.url_name == 'index' or request.resolver_match.url_name == 'category' %} class="menu-active" {% endif %}>PRODUCTS</a> </li>
+            <li> <a href="{% url 'catalog:category' 0 1 %}"{% if request.resolver_match.url_name == 'index' or request.resolver_match.url_name == 'category' %} class="menu-active" {% endif %}>PRODUCTS</a> </li>
             <li style="display: none;"> <a href="#">HISTORY</a> </li>
             <li style="display: none;"> <a href="#">SHOWROOM</a> </li>
             <li> <a href="{% url 'contact' %}"{% if request.resolver_match.url_name == 'contact' %} class="menu-active" {% endif %}>CONTACT</a> </li>

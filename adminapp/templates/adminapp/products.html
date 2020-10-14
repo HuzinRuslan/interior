@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load my_tags %}
+
 {% block content %}
 <div class="users-list">
     {% include 'adminapp/includes/inc_admin_nav.html' %}
@@ -20,9 +22,8 @@
             <div class="product-record">
                 {% for object in objects %}
                 <div>
-                    <img
-                            src="/media/{{object.image|default:'products_images/default.jpg'}}"
-                            alt="{{ object.name }}" class="product-image">
+                    <img src="{{ object.image|media_folder_products }}"
+                         alt="{{ object.name }}" class="product-image">
                     <div class="product_name {% if object.is_active == False %}not-active{% endif %}">
                         {{ object.name|title }}
                     </div>

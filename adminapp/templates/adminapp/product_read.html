@@ -1,0 +1,61 @@
+{% extends 'adminapp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="users-list">
+    {% include 'adminapp/includes/inc_admin_nav.html' %}
+    <div class="product-read">
+        <div class="product-name">
+            Продукт <strong> {{ object.category.name }} / {{ object.name }} </strong>
+        </div>
+        <div class="admin-product-read">
+            <div class="admin-product-imgs">
+                <div class="admin-miniImg-div">
+                    <img class="admin-product-miniImg" src="/media/{{ object.image }}" alt="">
+                    <img class="admin-product-miniImg" src="/media/{{ object.image }}" alt="">
+                    <img class="admin-product-miniImg" src="/media/{{ object.image }}" alt="">
+                </div>
+                <div class="admin-img-div">
+                    <img class="admin-product-img" src="/media/{{ object.image }}" alt="">
+                </div>
+            </div>
+            <div class="summary">
+                <div class="summary-info">
+                    <b>Цена</b>
+                    <p>{{ object.price }}</p>
+                    <b>Количество</b>
+                    <p>{{ object.quantity }}</p>
+                    <b>В каталоге</b>
+                    <p>{% if object.is_active %}да{% else %}нет{% endif %}</p>
+                </div>
+                <div class="admin-actions product-admin-actions">
+                    <button>
+                        <a class="btn" href="{% url 'admin:product_update' object.pk %}">Редактировать</a>
+                    </button>
+                    <button>
+                        <a class="btn" href="{% url 'admin:product_delete' object.pk %}">Удалить</a>
+                    </button>
+                    <button>
+                        <a class="btn" href="{% url 'admin:products' object.category.pk %}">Назад</a>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="product-desc">
+            <b>Краткая информация</b>
+            <p>
+                {{ object.short_desc }}
+            </p>
+            <br>
+            <br>
+            <b>Подробная информация</b>
+            <p>
+                {{ object.description }}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

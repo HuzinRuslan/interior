@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 import random
 from authapp.models import ShopUser
@@ -46,23 +47,34 @@ def contact(request):
     return render(request, 'mainapp/contacts.html', content)
 
 
-def catalog(request, pk=None):
+def catalog(request, pk=None, page=1):
     links_menu = ProductCategory.objects.all()
     products = Product.objects.all()
     # basket = sum(list(Basket.objects.filter(user=request.user).values_list('quantity',flat=True)))
 
     if pk is not None:
-        if pk == "0":
+        if pk == 0:
             products = Product.objects.all()
-            category = {'name': 'все'}
+            category = {
+                'pk': 0,
+                'name': 'все'
+            }
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
             products = Product.objects.filter(category_id=pk).order_by('-price')
 
+        paginator = Paginator(products, 3)
+        try:
+            products_paginator = paginator.page(page)
+        except PageNotAnInteger:
+            products_paginator = paginator.page(1)
+        except EmptyPage:
+            products_paginator = paginator.page(paginator.num_pages)
+
         content = {
             'title': 'каталог',
             'list_names': links_menu,
-            'catalog_products': products,
+            'catalog_products': products_paginator,
             'category': category,
             'basket': get_basket(request.user),
         }

@@ -3,59 +3,93 @@
 {% load static %}
 
 {% block header %}
-    <div class="contacts-text">
-        <p>Our Products Range</p>
-    </div>
+<div class="contacts-text">
+    <p>Our Products Range</p>
+</div>
 {% endblock %}
 
 {% block content %}
-    <div class="main">
-            <div class="main-catalog">
-                <div class="catalog-header">
-                    {% include 'mainapp/includes/inc_product_selector.html' %}
-                </div>
-                <div class="catalog">
-                    <ul class="products-ul catalog-ul">
-                        {% for item in catalog_products %}
-                            <li>
-                                <div>
-                                    <img class="product-img" src="/media/{{ item.image }}" alt="">
-                                    <div class="prod-hover">
-                                        <a href="{% url 'catalog:product' item.pk %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
-                                                alt=""></a>
-                                        <p class="name">{{item.name}}</p>
-                                        <p class="desc">{{item.short_desc}}</p>
-                                    </div>
+<div class="main">
+    <div class="main-catalog">
+        <div class="catalog-header">
+            {% include 'mainapp/includes/inc_product_selector.html' %}
+        </div>
+        <div class="cat">
+            <div class="catalog">
+                <ul class="products-ul catalog-ul">
+                    {% for item in catalog_products %}
+                        <li>
+                            <div>
+                                <img class="product-img" src="/media/{{ item.image }}" alt="">
+                                <div class="prod-hover">
+                                    <a href="{% url 'catalog:product' item.pk %}" class="button2"><img
+                                            src="{% static 'img/arrow.svg' %}"
+                                            alt=""></a>
+                                    <p class="name">{{item.name}}</p>
+                                    <p class="desc">{{item.short_desc}}</p>
                                 </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="refresh"><a href="#"><i class="fa fa-sync-alt"></i></a></div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
-            <div class="prod-promo">
-                <div class="sub-promo">
-                    <div class="sub-one"><img src="{% static 'img/promo-img-1.jpg' %}" alt="">
-                        <div class="promo-text">
-                            <p class="promo-header">exclusive</p>
-                            <h3 class="promo-name">Fishnet Chair</h3>
-                            <p class="promo-content">Seat and back with upholstery made of cold cure foam. Steel frame,
-                                available in matt </p> <a href="{% url 'catalog:product' 0 %}" class="button">ORDER US <img
-                                    class="arrow" src="{% static 'img/arrow.svg' %}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="sub-promo">
-                    <div class="sub-two"><img src="{% static 'img/promo-img.jpg' %}" alt="">
-                        <div class="promo-text">
-                            <p class="promo-header">exclusive</p>
-                            <h3 class="promo-name">Fishnet Chair</h3>
-                            <p class="promo-content">Seat and back with upholstery made of cold cure foam. Steel frame,
-                                available in matt </p> <a href="{% url 'catalog:product' 0 %}" class="button">ORDER US <img
-                                    class="arrow" src="{% static 'img/arrow.svg' %}" alt=""></a>
-                        </div>
-                    </div>
+            <div class="paginator">
+                {% if catalog_products.has_previous %}
+                    <a href="{% url 'catalog:category' category.pk 1 %}">
+                        <i class="fas fa-angle-double-left paginator"></i>
+                    </a>
+                    <a href="{% url 'catalog:category' category.pk catalog_products.previous_page_number %}">
+                        <i class="fas fa-angle-left paginator"></i>
+                    </a>
+                {% endif %}
+                <span>
+                {% for num in catalog_products.paginator.page_range %}
+                    {% if catalog_products.number  == num %}
+                        <span class="pagination-number pagination-current">{{ num }}</span>
+                    {% else %}
+                        <a class="pagination-number" href="{% url 'catalog:category' category.pk num  %}"
+                           data-id="{{ category.pk }}" data-num="{{  num  }}">
+                            {{ num }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+                </span>
+                {% if catalog_products.has_next %}
+                    <a href="{% url 'catalog:category' category.pk catalog_products.next_page_number %}">
+                        <i class="fas fa-angle-right paginator"></i>
+                    </a>
+                    <a href="{% url 'catalog:category' category.pk catalog_products.paginator.num_pages %}">
+                        <i class="fas fa-angle-double-right paginator"></i>
+                    </a>
+                {% endif %}
+            </div>
+            <div class="refresh"><a href="#"><i class="fa fa-sync-alt"></i></a></div>
+        </div>
+
+    </div>
+    <div class="prod-promo">
+        <div class="sub-promo">
+            <div class="sub-one"><img src="{% static 'img/promo-img-1.jpg' %}" alt="">
+                <div class="promo-text">
+                    <p class="promo-header">exclusive</p>
+                    <h3 class="promo-name">Fishnet Chair</h3>
+                    <p class="promo-content">Seat and back with upholstery made of cold cure foam. Steel frame,
+                        available in matt </p> <a href="{% url 'catalog:product' 0 %}" class="button">ORDER US <img
+                        class="arrow" src="{% static 'img/arrow.svg' %}" alt=""></a>
                 </div>
             </div>
         </div>
+        <div class="sub-promo">
+            <div class="sub-two"><img src="{% static 'img/promo-img.jpg' %}" alt="">
+                <div class="promo-text">
+                    <p class="promo-header">exclusive</p>
+                    <h3 class="promo-name">Fishnet Chair</h3>
+                    <p class="promo-content">Seat and back with upholstery made of cold cure foam. Steel frame,
+                        available in matt </p> <a href="{% url 'catalog:product' 0 %}" class="button">ORDER US <img
+                        class="arrow" src="{% static 'img/arrow.svg' %}" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
