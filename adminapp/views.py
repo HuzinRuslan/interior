@@ -48,9 +48,9 @@ class UsersListView(ListView):
         context_data['title'] = 'Пользователи'
         return context_data
 
-    def get_queryset(self):
-        qs = super().get_queryset()
-        return qs.filter(is_active=True)
+    # def get_queryset(self):
+    #     qs = super().get_queryset()
+    #     return qs.filter(is_active=True)
 
 
 @user_passes_test(lambda u: u.is_superuser)

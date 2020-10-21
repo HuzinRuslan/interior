@@ -35,33 +35,47 @@
             </div>
             <div class="paginator">
                 {% if catalog_products.has_previous %}
-                    <a href="{% url 'catalog:category' category.pk 1 %}">
+                    <a name="paginator" href="{% url 'catalog:category' category.pk 1 %}">
                         <i class="fas fa-angle-double-left paginator"></i>
                     </a>
-                    <a href="{% url 'catalog:category' category.pk catalog_products.previous_page_number %}">
+                    <a name="paginator" href="{% url 'catalog:category' category.pk catalog_products.previous_page_number %}">
+                        <i class="fas fa-angle-left paginator"></i>
+                    </a>
+                {% else %}
+                    <a name="paginator" href="{% url 'catalog:category' category.pk 1 %}">
+                        <i class="fas fa-angle-double-left paginator"></i>
+                    </a>
+                    <a name="paginator" href="{% url 'catalog:category' category.pk 1 %}">
                         <i class="fas fa-angle-left paginator"></i>
                     </a>
                 {% endif %}
                 <span>
                 {% for num in catalog_products.paginator.page_range %}
                     {% if catalog_products.number  == num %}
-                        <span class="pagination-number pagination-current">{{ num }}</span>
+                        <span class="pagination-number pagination-current" > {{ num }} </span>
                     {% else %}
-                        <a class="pagination-number" href="{% url 'catalog:category' category.pk num  %}"
-                           data-id="{{ category.pk }}" data-num="{{  num  }}">
+                        <a name="paginator" class="pagination-number" href="{% url 'catalog:category' category.pk num  %}">
                             {{ num }}
                         </a>
                     {% endif %}
                 {% endfor %}
                 </span>
                 {% if catalog_products.has_next %}
-                    <a href="{% url 'catalog:category' category.pk catalog_products.next_page_number %}">
+                    <a name="paginator" href="{% url 'catalog:category' category.pk catalog_products.next_page_number %}">
                         <i class="fas fa-angle-right paginator"></i>
                     </a>
-                    <a href="{% url 'catalog:category' category.pk catalog_products.paginator.num_pages %}">
+                    <a name="paginator" href="{% url 'catalog:category' category.pk catalog_products.paginator.num_pages %}">
+                        <i class="fas fa-angle-double-right paginator"></i>
+                    </a>
+                {% else %}
+                    <a name="paginator" href="{% url 'catalog:category' category.pk catalog_products.paginator.num_pages %}">
+                        <i class="fas fa-angle-right paginator"></i>
+                    </a>
+                    <a name="paginator" href="{% url 'catalog:category' category.pk catalog_products.paginator.num_pages %}">
                         <i class="fas fa-angle-double-right paginator"></i>
                     </a>
                 {% endif %}
+
             </div>
             <div class="refresh"><a href="#"><i class="fa fa-sync-alt"></i></a></div>
         </div>
@@ -92,4 +106,9 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src= "{% static 'js/catalog_paginator_script.js' %}"></script>
 {% endblock %}

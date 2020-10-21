@@ -1,0 +1,11 @@
+{% extends 'authapp/base.html' %}
+{% block loginForm %}
+    {% if user.is_authenticated %}
+        <h2>Активация пройдена</h2>
+        <p>Пользователь {{ user.username }} активирован</p>
+    {% else %}
+        <h2>Активация не пройдена</h2>
+
+    {% endif %}
+    <a href="{% url 'main' %}">На главную</a>
+{% endblock %}
