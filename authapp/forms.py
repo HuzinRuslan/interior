@@ -4,7 +4,7 @@ import random
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
-from authapp.models import ShopUser
+from authapp.models import ShopUser, ShopUserProfile
 
 
 class ShopUserLoginForm(AuthenticationForm):
@@ -76,8 +76,21 @@ class ShopUserEditForm(UserChangeForm):
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        data = ShopUser.objects.all()
-        for obj in data:
-            if email == obj.email:
-                raise forms.ValidationError('Такая почта уже зарегистрирована')
+        if email != '':
+            data = ShopUser.objects.all()
+            for obj in data:
+                if email == obj.email:
+                    raise forms.ValidationError('Такая почта уже зарегистрирована')
         return email
+
+
+class ShopUserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ('tagline', 'about_me', 'gender')
+
+    def __init__(self, *args, **kwargs):
+        super(ShopUserProfileEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = "form-control"
+            field.help_text = ''
