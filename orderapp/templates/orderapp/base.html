@@ -9,30 +9,27 @@
         {% endblock %}
     </title>
     {% block css %}
+        <link rel="stylesheet" href="{% static 'style/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'style/style.css' %}">
-<!--        <link rel="stylesheet" href="{% static 'style/bootstrap.min.css' %}">-->
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;700&display=swap" rel="stylesheet">
     {% endblock %}
     {% block js %}
         <script src="https://kit.fontawesome.com/9d0fccc099.js" crossorigin="anonymous"></script>
         <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-<!--        <script src="{% static 'js/bootstrap.min.js' %}"></script>-->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
     {% endblock  %}
 </head>
 <body>
-    <div class="container">
-        {% block menu %}
-            {% include 'mainapp/includes/inc_main_menu.html' %}
-        {% endblock %}
+    <div class="order_container">
+        <div class="order_content">
+            {% block menu %}
+                {% include 'mainapp/includes/inc_main_menu.html' %}
+            {% endblock %}
 
-        {% block header %}
+            {% block content %}
 
-        {% endblock %}
-
-        {% block content %}
-
-        {% endblock %}
-
+            {% endblock %}
+        </div>
         {% block footer %}
             {% include 'mainapp/includes/inc_footer.html' %}
         {% endblock %}

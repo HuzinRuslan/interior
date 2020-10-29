@@ -10,6 +10,7 @@ urlpatterns = [
     path('catalog/', include('mainapp.urls', namespace='catalog')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('basket/', include('basketapp.urls', namespace='basket')),
+    path('order/', include('orderapp.urls', namespace='order')),
 
     # path('admin/', admin.site.urls),
 
