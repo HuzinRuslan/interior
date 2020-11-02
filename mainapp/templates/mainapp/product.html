@@ -4,35 +4,50 @@
 
 {% block menu %}
     <div class="header" style="background-color: white">
-        <div class="logo">
+       <div class="logo">
             <a href="{% url 'main' %}"><img src="{% static 'img/logo.svg' %}" alt=""></a>
         </div>
         <div class="menu">
             <ul class="menu-list">
-                <li> <a href="{% url 'main' %}">HOME</a> </li>
-                <li> <a href="{% url 'catalog:category' 0 1 %}">PRODUCTS</a> </li>
-                <li style="display:none;"> <a href="#">HISTORY</a> </li>
-                <li style="display:none;"> <a href="#">SHOWROOM</a> </li>
-                <li> <a href="{% url 'contact' %}">CONTACT</a> </li>
+                <li> <a href="{% url 'main' %}" {% if request.resolver_match.url_name == 'main' %} class="menu-active" {% endif %}>HOME</a> </li>
+                <li> <a href="{% url 'catalog:category' 0 1 %}"{% if request.resolver_match.url_name == 'index' or request.resolver_match.url_name == 'category' %} class="menu-active" {% endif %}>PRODUCTS</a> </li>
+                <li style="display: none;"> <a href="#">HISTORY</a> </li>
+                <li style="display: none;"> <a href="#">SHOWROOM</a> </li>
+                <li> <a href="{% url 'contact' %}"{% if request.resolver_match.url_name == 'contact' %} class="menu-active" {% endif %}>CONTACT</a> </li>
                 {% if user.is_authenticated %}
-                <li> <a href="{% url 'auth:edit' %}">
-                    {% if user.first_name %}
-                        {{ user.first_name }}
-                    {% else %}
-                        Пользователь
-                    {% endif %}
-                </a> </li>
-                <li> <a href="{% url 'auth:logout' %}">Logout</a> </li>
-            {% else %}
-                <li> <a href="{% url 'auth:login' %}">Login</a> </li>
-            {% endif %}
-                <li> <a href="{% url 'basket:basket-index' %}" id="basket" {% if request.resolver_match.url_name == 'basket' %} class="menu-active" {% endif %}>
-                    {% if basket %}
-                        {{ basket.0.total_cost|floatformat:0 }} руб
-                        ({{ basket.0.total_quantity }} шт)
-                    {% endif %}
-                </a>
-            </li>
+                    <li>
+                        <div class="dropdown">
+                           <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                               {{ user.first_name|default:'Пользователь' }}
+                           </a>
+                           <ul class="dropdown-menu">
+                               <li>
+                                   <a href="{% url 'auth:edit' %}">
+                                       Профиль
+                                   </a>
+                               </li>
+                               <li>
+                                   <a href="{% url 'order:orders_list' %}">
+                                       Заказы
+                                   </a>
+                               </li>
+                           </ul>
+                       </div>
+                    </li>
+                    <li><a href="{% url 'auth:logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'auth:login' %}">Login</a></li>
+                {% endif %}
+                {% if user.is_superuser %}
+                    <li><a href="{% url 'admin:users' %}">Admin</a></li>
+                {% endif %}
+                <li> <a href="{% url 'basket:basket-index' %}" class="basket {% if request.resolver_match.url_name == 'basket-index' %}menu-active"{% endif %}">
+                        {% if basket %}
+                            {{ basket.0.total_cost|floatformat:0 }} руб
+                            ({{ basket.0.total_quantity }} шт)
+                        {% endif %}
+                    </a>
+                </li>
                 <li class="search"> <a href="#"><img src="{% static 'img/search.svg' %}" alt=""></a> </li>
             </ul>
         </div>

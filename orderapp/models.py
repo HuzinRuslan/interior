@@ -51,7 +51,6 @@ class Order(models.Model):
 
     def delete(self):
         for item in self.orderitems.select_related():
-            print(item)
             item.product.quantity += item.quantity
             item.product.save()
 
@@ -66,3 +65,7 @@ class OrderItem(models.Model):
 
     def get_product_cost(self):
         return self.product.price * self.quantity
+
+    @staticmethod
+    def get_item(pk):
+        return OrderItem.objects.get(pk=pk)

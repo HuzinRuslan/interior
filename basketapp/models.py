@@ -11,6 +11,17 @@ class Basket(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     add_datetime = models.DateTimeField(auto_now_add=True)
 
+    @staticmethod
+    def get_item(pk):
+        return Basket.objects.get(pk=pk)
+
+    @staticmethod
+    def get_product(user, product):
+        # item = Basket.objects.filter(user=user, product=product)
+        # print(item[0])
+        # return Basket.objects.get(user=user, product=product)
+        return Basket.objects.filter(user=user, product=product)
+
     @property
     def product_cost(self):
         return self.product.price * self.quantity

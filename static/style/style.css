@@ -54,7 +54,7 @@ body {
   padding: 6px 0px 0px 10px !important;
 }
 .slider {
-  min-width: 1366px;
+  max-width: 1366px;
   position: relative;
   min-height: 800px;
 }
@@ -992,7 +992,7 @@ h3.contact {
 }
 .new-user {
   border: none;
-  margin-left: 10px;
+  margin-left: 120px;
   background-color: #5884ff;
   border-radius: 30px;
   width: 180px;
