@@ -23,7 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '$!s!g$)p(w**biq+pk5__d81vv@i6wx6buoa+h5zigzotddf5_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = []
@@ -89,6 +91,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'mygeekshop',
+    #     'USER': 'django',
+    #     'PASSWORD': 'geekbrains',
+    # }
+
 }
 
 # Password validation
