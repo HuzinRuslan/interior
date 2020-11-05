@@ -1,0 +1,50 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="users-list">
+    {% include 'adminapp/includes/inc_admin_nav.html' %}
+    <div class="admin-categories-list">
+        <div class="users">
+            <p>Заказы ({{ object_list.count }})</p>
+        </div>
+        <div class="category-div">
+            <div class="category-record">
+                <p>Название</p>
+                <p>Действия</p>
+                <p>Описание</p>
+            </div>
+            <div class="category-record">
+                {% for object in object_list %}
+                <div class="category_name {% if object.is_active == False %}not-active{% endif %}">
+                    Заказ №{{ object.pk }}<br>
+                    Пользователь: {{ object.user.username|title }}<br>
+                    Сумма: {{ object.get_total_cost }} руб<br>
+                    Статус: {{ object.get_status_display }}
+                </div>
+                <div class="admin-actions">
+                    <button>
+                        <a href="{% url 'admin:order_status_change' object.pk %}">
+                            {% if object.status == 'FM' %}
+                                Отправить на формирование
+                            {% endif %}
+                            {% if object.status == 'STP' %}
+                                редактировать
+                            {% endif %}
+                        </a>
+                    </button>
+                    <button>
+                        <a href="{% url 'admin:category_delete' object.pk %}">
+                            удалить
+                        </a>
+                    </button>
+                </div>
+                <div class="category_desc">
+                    {{ object.description|title }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

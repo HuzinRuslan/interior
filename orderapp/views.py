@@ -112,10 +112,14 @@ def order_forming_complete(request, pk):
     return HttpResponseRedirect('order:orders_list')
 
 
-# def order_edit(request, index):
-#     item_price = Product.objects.get(pk=index).price
-#
-#     return JsonResponse({'result': item_price})
+def order_edit(request, pk):
+    if request.is_ajax():
+        product = Product.objects.filter(pk=int(pk)).first()
+        # product = Product.objects.get(pk=pk)
+        if product:
+            return JsonResponse({'price': product.price})
+        else:
+            return JsonResponse({'price': 0})
 
 
 @receiver(pre_save, sender=OrderItem)

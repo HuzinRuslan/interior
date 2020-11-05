@@ -26,6 +26,14 @@
     <p><a href="{% url 'main' %}">LOCATIONS</a></p>
     <p><a href="{% url 'main' %}">JOB BOARDS</a></p>
     <p><a href="{% url 'main' %}">SOCIAL</a></p>
+    <p>
+      <a href="{% url 'admin:orders' %}"
+       class="{% if request.resolver_match.url_name == 'orders' %}
+                admin-active
+              {% endif %}">
+      ЗАКАЗЫ
+      </a>
+    </p>
 
   </div>
   <div>

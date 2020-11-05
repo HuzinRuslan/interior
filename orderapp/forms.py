@@ -1,5 +1,6 @@
 from django import forms
 
+from mainapp.models import Product
 from orderapp.models import Order, OrderItem
 
 
@@ -26,3 +27,5 @@ class OrderItemForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = "form-control"
             field.widget.attrs['style'] = "box-sizing:border-box !important"
+
+        self.fields['product'].queryset = Product.get_items()
