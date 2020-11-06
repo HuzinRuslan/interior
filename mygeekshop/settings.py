@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'adminapp',
     'orderapp',
     'social_django',
-     'debug_toolbar',
-     'template_profiler_panel',
+    'debug_toolbar',
+    'template_profiler_panel',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
-     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 if DEBUG:
@@ -116,16 +116,16 @@ AUTH_USER_MODEL = 'authapp.Shopuser'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
     # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'mygeekshop',
-    #     'USER': 'django',
-    #     'PASSWORD': 'geekbrains',
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mygeekshop',
+        'USER': 'django',
+        'PASSWORD': 'geekbrains',
+    }
 
 }
 
