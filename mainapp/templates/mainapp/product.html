@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load my_tags %}
+
 {% block menu %}
     <div class="header" style="background-color: white">
        <div class="logo">
@@ -97,11 +99,12 @@
                     <ul class="products-ul catalog-ul">
                         {% for product in same_products %}
                         <li>
-                            <div><img class="product-img" src="/media/{{ product.image }}" alt="">
+                            <div><img class="product-img" src="{{ product.image|media_folder_products }}" alt="">
                                 <div class="prod-hover">
                                     <a href="{% url 'catalog:product' product.pk %}" class="button2"><img src="{% static 'img/arrow.svg' %}"
                                             alt=""></a>
                                     <p class="name">{{ product.name }}</p>
+                                    <p class="name">{{ product.category.name }}</p>
                                     <p class="desc">{{ product.description }}</p>
                                 </div>
                             </div>

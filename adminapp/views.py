@@ -231,7 +231,7 @@ class OrdersListView(ListView):
     template_name = 'adminapp/orders.html'
 
     def get_queryset(self):
-        return super(OrdersListView, self).get_queryset().exclude(status=Order.CANCEL)
+        return super(OrdersListView, self).get_queryset().exclude(status=Order.CANCEL).select_related('user')
 
 
 def order_status_change(request, pk):
