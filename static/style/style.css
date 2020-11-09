@@ -1190,6 +1190,8 @@ i.paginator {
   color: #6d85c7;
 }
 .dropdown {
+  min-width: 110px;
+  text-align: center;
   position: relative;
 }
 .dropdown:hover .dropdown-menu {
