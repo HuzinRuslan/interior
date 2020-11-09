@@ -231,7 +231,10 @@ class OrdersListView(ListView):
     template_name = 'adminapp/orders.html'
 
     def get_queryset(self):
-        return super(OrdersListView, self).get_queryset().exclude(status=Order.CANCEL).select_related('user')
+        idx = list(Order.objects.values_list('id', flat=True))
+
+        items = list(super(OrdersListView, self).get_queryset().exclude(status=Order.CANCEL).filter(id__in=idx).select_related('user'))
+        return items
 
 
 def order_status_change(request, pk):

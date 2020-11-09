@@ -1,4 +1,5 @@
 http://194.67.78.150/
+http://194.67.78.150/catalog/product/2/
 http://194.67.78.150/catalog/0/1/
 http://194.67.78.150/contact/
 http://194.67.78.150/catalog/1/1/
