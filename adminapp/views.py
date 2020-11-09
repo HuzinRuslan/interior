@@ -233,8 +233,7 @@ class OrdersListView(ListView):
     def get_queryset(self):
         idx = list(Order.objects.values_list('id', flat=True))
 
-        items = list(super(OrdersListView, self).get_queryset().exclude(status=Order.CANCEL).filter(id__in=idx).select_related('user'))
-        return items
+        return super(OrdersListView, self).get_queryset().exclude(status=Order.CANCEL).filter(id__in=idx).select_related('user')
 
 
 def order_status_change(request, pk):
