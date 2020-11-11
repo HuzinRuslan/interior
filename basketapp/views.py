@@ -12,7 +12,7 @@ from mainapp.models import Product, ProductCategory, Contact
 def basket(request):
     products_list = Product.objects.all().order_by('?')[:4]
     content = {
-        'basket': Basket.objects.filter(user=request.user),
+        # 'basket': Basket.objects.filter(user=request.user),
         'products': products_list,
     }
     return render(request, 'basketapp/basket.html', content)

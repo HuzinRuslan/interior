@@ -1,3 +1,4 @@
+from distlib.util import cached_property
 from django.conf import settings
 from django.db import models
 
@@ -28,16 +29,22 @@ class Basket(models.Model):
 
     @property
     def total_quantity(self):
-        _items = Basket.objects.filter(user=self.user)
+        _items = self.get_items_cached
+        # _items = Basket.objects.filter(user=self.user)
         _total_quantity = sum(list(map(lambda x: x.quantity, _items)))
         return _total_quantity
 
     @property
     def total_cost(self):
-        _items = Basket.objects.filter(user=self.user)
+        _items = self.get_items_cached
+        # _items = Basket.objects.filter(user=self.user)
         _total_cost = sum(list(map(lambda x: x.product_cost, _items)))
         return _total_cost
 
     @staticmethod
     def get_items(user):
         return Basket.objects.filter(user=user).order_by('product__category')
+
+    @cached_property
+    def get_items_cached(self):
+        return Basket.objects.filter(user=self.user)
