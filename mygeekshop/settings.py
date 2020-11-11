@@ -229,3 +229,20 @@ SOCIAL_AUTH_VK_OAUTH2_SECRET = 'Sin7actF6jdimQNNHaEG'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '362504948463-q3i700krkjh0dso5rvajrstq7dip55q6.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'v1pV748wM55fLKlTwoB6iBp7'
+
+CACHE_MIDDLEWARE_ALIAS = 'default'
+
+CACHE_MIDDLEWARE_SECONDS = 120
+
+CACHE_MIDDLEWARE_KEY_PREFIX = 'mygeekshop'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211'
+    }
+}
+
+LOW_CACHE = True
+
+
