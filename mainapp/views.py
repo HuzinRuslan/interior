@@ -2,6 +2,9 @@ from django.core.cache import cache
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 import random
+
+from django.views.decorators.cache import cache_page
+
 from authapp.models import ShopUser
 from basketapp.models import Basket
 from mainapp.models import Product, ProductCategory, Contact
@@ -54,6 +57,7 @@ def main(request):
     return render(request, 'mainapp/index.html', content)
 
 
+@cache_page(3600)
 def contact(request):
     contacts = Contact.objects.all()[:3]
     products_list = Product.objects.all().order_by('?')[:4]
@@ -65,6 +69,7 @@ def contact(request):
     return render(request, 'mainapp/contacts.html', content)
 
 
+@cache_page(3600)
 def catalog(request, pk=None, page=1):
     links_menu = get_links_menu()
     products = Product.objects.all()
