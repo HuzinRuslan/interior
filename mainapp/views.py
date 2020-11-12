@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 import random
 
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page, never_cache
 
 from authapp.models import ShopUser
 from basketapp.models import Basket
@@ -110,6 +110,7 @@ def catalog(request, pk=None, page=1):
     return render(request, 'mainapp/catalog.html', content)
 
 
+@never_cache
 def product(request, pk=None):
     product_item = get_object_or_404(Product, pk=pk)
     title = product_item.name
