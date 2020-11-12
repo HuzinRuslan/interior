@@ -110,7 +110,7 @@ def catalog(request, pk=None, page=1):
     return render(request, 'mainapp/catalog.html', content)
 
 
-@never_cache
+# @never_cache
 def product(request, pk=None):
     product_item = get_object_or_404(Product, pk=pk)
     title = product_item.name
