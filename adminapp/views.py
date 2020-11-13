@@ -207,7 +207,7 @@ def product_update(request, pk):
         'user': get_user(request.user),
         'update_form': product_form
     }
-    return render(request, 'adminapp/category_update.html', content)
+    return render(request, 'adminapp/product_update.html', content)
 
 
 @user_passes_test(lambda u: u.is_superuser)
