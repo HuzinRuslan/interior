@@ -72,6 +72,7 @@ def contact(request):
 @cache_page(3600)
 def catalog(request, pk=None, page=1):
     links_menu = get_links_menu()
+    # links_menu = ProductCategory.objects.all()
     products = Product.objects.all()
     # basket = sum(list(Basket.objects.filter(user=request.user).values_list('quantity',flat=True)))
 
@@ -84,6 +85,7 @@ def catalog(request, pk=None, page=1):
             }
         else:
             category = get_category(pk)
+            # category = get_object_or_404(ProductCategory, pk=pk)
             products = Product.objects.filter(category_id=pk).order_by('-price')
 
         paginator = Paginator(products, 3)
@@ -115,6 +117,7 @@ def product(request, pk=None):
     product_item = get_object_or_404(Product, pk=pk)
     title = product_item.name
     links_menu = get_links_menu()
+    # links_menu = ProductCategory.objects.all()
     same_products = get_same_products(product_item)
     content = {
         'title': title,

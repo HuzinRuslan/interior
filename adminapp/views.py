@@ -1,4 +1,6 @@
 from django.contrib.auth.decorators import user_passes_test
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
@@ -233,7 +235,8 @@ class OrdersListView(ListView):
     def get_queryset(self):
         idx = list(Order.objects.values_list('id', flat=True))
 
-        return super(OrdersListView, self).get_queryset().exclude(status=Order.CANCEL).filter(id__in=idx).select_related('user')
+        return super(OrdersListView, self).get_queryset().exclude(status=Order.CANCEL).filter(
+            id__in=idx).select_related('user')
 
 
 def order_status_change(request, pk):
@@ -244,3 +247,12 @@ def order_status_change(request, pk):
         order.status = order.PROCEEDED
     order.save()
     return HttpResponseRedirect(reverse('adminapp:orders'))
+
+
+@receiver(pre_save, sender=ProductCategory)
+def product_is_active_productcategory_save(sender, instance, **kwargs):
+    if instance.pk:
+        if instance.is_active:
+            instance.product_set.update(is_active=True)
+        else:
+            instance.product_set.update(is_active=False)
