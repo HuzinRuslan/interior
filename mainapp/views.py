@@ -1,5 +1,6 @@
 from django.core.cache import cache
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 import random
 
@@ -71,14 +72,17 @@ def contact(request):
 
 @cache_page(3600)
 def catalog(request, pk=None, page=1):
+
     links_menu = get_links_menu()
     # links_menu = ProductCategory.objects.all()
+
     products = Product.objects.all()
     # basket = sum(list(Basket.objects.filter(user=request.user).values_list('quantity',flat=True)))
 
     if pk is not None:
         if pk == 0:
             products = Product.objects.all()
+            # products = Product.objects.filter(Q(category__pk=1) | Q(category__pk=2))
             category = {
                 'pk': 0,
                 'name': 'все'
@@ -116,8 +120,10 @@ def catalog(request, pk=None, page=1):
 def product(request, pk=None):
     product_item = get_object_or_404(Product, pk=pk)
     title = product_item.name
+
     links_menu = get_links_menu()
     # links_menu = ProductCategory.objects.all()
+
     same_products = get_same_products(product_item)
     content = {
         'title': title,
