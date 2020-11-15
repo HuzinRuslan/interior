@@ -11,10 +11,12 @@ from mainapp.models import Product, ProductCategory, Contact
 
 @login_required
 def basket(request):
+    title = 'корзина'
     products_list = Product.objects.all().order_by('?')[:4]
     content = {
         # 'basket': Basket.objects.filter(user=request.user),
         'products': products_list,
+        'title': title
     }
     return render(request, 'basketapp/basket.html', content)
 
