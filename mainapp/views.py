@@ -70,9 +70,8 @@ def contact(request):
     return render(request, 'mainapp/contacts.html', content)
 
 
-@cache_page(3600)
+# @cache_page(3600)
 def catalog(request, pk=None, page=1):
-
     links_menu = get_links_menu()
     # links_menu = ProductCategory.objects.all()
 
