@@ -58,7 +58,7 @@ def main(request):
     return render(request, 'mainapp/index.html', content)
 
 
-@cache_page(3600)
+# @cache_page(3600)
 def contact(request):
     contacts = Contact.objects.all()[:3]
     products_list = Product.objects.all().order_by('?')[:4]
